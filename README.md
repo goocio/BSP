@@ -3,7 +3,7 @@ This is a template for Oxford Mathematics 3rd year BSP (Part B Structured Projec
 
 ### Provided features
 
-The features are mostly related to styling contents: a title page, footers, environments, a list of notation, correct bibliography format, etc., and therefore you have a decent amount of freedom over some specifics of the parameters such as colors and spacing (search "%FORMAT" in the project; any line with it has some color/spacing option you are free to change). Math is also made copy-pasteable, conditional on you using the $\LaTeX$-style `\(...\)` for inline math and `\[...\]` for display math instead of the $\TeX$-style `$...$` and `$$...$$` respectively.
+The features are mostly related to styling contents: a title page, footers, environments, a list of notation, correct bibliography format, etc., and therefore you have a decent amount of freedom over some specifics of the parameters such as colors and spacing (search "%FORMAT" in the project; any line with it has some color/spacing option you are free to change). Math is also made copy-pasteable and searchable (in the form of $\LaTeX$ code), conditional on you using the $\LaTeX$-style `\(...\)` for inline math and `\[...\]` for display math instead of the $\TeX$-style `$...$` and `$$...$$` respectively.
 
 There are three settings:
 - `titlepage-abstract`, which causes the abstract to appear on the title page (see `\abstractpage` below);

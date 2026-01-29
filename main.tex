@@ -16,7 +16,7 @@
 
 % spacing between lines and paragraphs (NEEDS to be here in the main body); the format is (maximally) `length plus stretch minus shrink`, where TeX starts with `length` and if necessary can stretch/shrink it up to the given values to help things fit more neatly on a page.
 % a good pattern (though by no means mandatory) is to have a fixed \baselineskip and a stretchable \parskip, in the ratio baselineskiplength:parskiplength:parskipstretch = 8:4:1.
-\setlength{\baselineskip}{16pt} % space between lines (default: 14.5pt) %FORMAT
+\setlength{\baselineskip}{16pt} % space between lines (default: 14.5pt, smallest we're allowed to go is single-spaced i.e. 12pt since we have to use 12pt font) %FORMAT
 \setlength{\parskip}{8pt plus 2pt} % additional space between paragraphs (default: 0pt plus 1pt) i.e., the space between the last line of one paragraph and the first line of the next is this plus \baselineskip %FORMAT
 
 \begin{frontmatter}

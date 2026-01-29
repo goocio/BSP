@@ -138,7 +138,7 @@
     {\vspace*{1.5em}}
     {\large Submitted by Candidate \@candidatenumber \titlepage@skip MMath Mathematics \titlepage@skip University of Oxford \titlepage@skip \vspace*{1.5em} \@date}
     \iftitlepage@abstract
-    {\par \vspace*{5em}}
+    {\par \vspace*{5em}} %FORMAT
     {{\bfseries Abstract} \par \@abstract}
     \fi
 \end{center}
