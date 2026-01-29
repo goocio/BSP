@@ -1,0 +1,79 @@
+% A bare-bones preamble for you to customize.
+
+%%%%% PACKAGES
+
+% symbols
+\RequirePackage{amssymb} % essential
+\RequirePackage{stmaryrd} % general use
+\RequirePackage{pifont} % \ding
+
+% fonts
+\RequirePackage{amsfonts} % essential
+\RequirePackage{bbm} % \mathbbm lets you use \mathbb on more things, e.g. \mathbbm{1}
+\RequirePackage{mathrsfs} % \mathscr
+\RequirePackage{xcolor} % generally useful
+
+% macros
+\RequirePackage{amsmath} % essential
+\RequirePackage{mathtools} % essential
+\RequirePackage{tensor} % for better indices, especially on the left
+\RequirePackage{cancel} % \cancel, \bcancel, and \cancelto
+
+
+
+%%%%% MACROS
+
+% brackets
+\newcommand*{\ceil}[1]{\left\lceil #1\right\rceil}
+\newcommand*{\floor}[1]{\left\lfloor #1\right\rfloor}
+\newcommand*{\round}[1]{\left\lfloor #1\right\rceil}
+\newcommand*{\ang}[1]{\left\langle#1\right\rangle}
+\newcommand*{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand*{\norm}[1]{\left\|#1\right\|}
+
+% functions/operators
+\newcommand*{\sech}{\operatorname{sech}}
+\newcommand*{\csch}{\operatorname{csch}}
+\newcommand*{\arcsec}{\operatorname{arcsec}}
+\newcommand*{\arccot}{\operatorname{arccot}}
+\newcommand*{\arccsc}{\operatorname{arccsc}}
+\newcommand*{\arcosh}{\operatorname{arcosh}}
+\newcommand*{\arsinh}{\operatorname{arsinh}}
+\newcommand*{\artanh}{\operatorname{artanh}}
+\newcommand*{\arsech}{\operatorname{arsech}}
+\newcommand*{\arcsch}{\operatorname{arcsch}}
+\newcommand*{\arcoth}{\operatorname{arcoth}}
+\newcommand*{\lcm}{\operatorname{lcm}}
+\newcommand*{\hcf}{\operatorname{hcf}}
+\newcommand*{\sgn}{\operatorname{sgn}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+% calculus
+\newcommand*{\dd}{\mathop{}\!\mathrm d} % d_ in integrals / differential forms
+\newcommand*{\dv}[2]{\frac{\mathrm d#1}{\mathrm d#2}} % derivative
+\newcommand*{\pdv}[2]{\frac{\partial #1}{\partial #2}} % partial derivative
+\newcommand*{\grad}{\boldsymbol{\nabla}} % grad operator
+
+
+
+%%%%% CUSTOM SYMBOLS
+
+\newcommand*{\smallo}{%
+	\mathchoice%
+		{{\scriptstyle\mathcal{O}}}% \displaystyle
+		{{\scriptstyle\mathcal{O}}}% \textstyle
+		{{\scriptscriptstyle\mathcal{O}}}% \scriptstyle
+		{\scalebox{.7}{$\scriptscriptstyle\mathcal{O}$}}% \scriptscriptstyle
+}
+
+% manual codepoint access to pull a couple symbols from mathabx
+% (the package defines a ton of symbols, it would be expensive to import;
+% in fact 99% of the time if there's some weird symbol you can't find it'll be in mathabx)
+\DeclareFontFamily{U}{matha}{\hyphenchar\font45}
+\DeclareFontShape{U}{matha}{m}{n}{
+      <5> <6> <7> <8> <9> <10> gen * matha
+      <10.95> matha10 <12> <14.4> <17.28> <20.74> <24.88> matha12
+      }{}
+\newcommand{\nestedlt}{\mathbin{\hbox{\usefont{U}{matha}{m}{n}\symbol{\string"CE}}}}
+\newcommand{\nestedgt}{\mathbin{\hbox{\usefont{U}{matha}{m}{n}\symbol{\string"CF}}}}

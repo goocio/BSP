@@ -1,0 +1,26 @@
+% see here for a general reference of how bibtex works:
+% https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management#BibTeX
+% if you want to cite something that you've given key "foo", do \cite{foo}
+% if it's a book and you want to cite a specific page range from it, do \cite[startpage-endpage]{foo}
+
+% BSP citation guidelines:
+% journal articles:
+% Author(s), `Title', \emph{Journal}, vol.number (year), pages
+% books:
+% Author(s), \emph{Title}, Publisher, year
+
+@book{texbook,
+    author = {Donald E. Knuth},
+    title = {The {\TeX} Book},
+    publisher = {Addison-Wesley Professional},
+    year = {1986},
+}
+@article{knuth:1984,
+    author={Donald E. Knuth},
+    title={Literate Programming},
+    journal={The Computer Journal},
+    volume={27},
+    number={2},
+    year={1984},
+    pages={97--111},
+}
