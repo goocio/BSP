@@ -43,11 +43,13 @@
     \node[draw=headingcolor, fill=headingcolor, anchor=west, minimum height=#1, text=white] at ([xshift=-\dimexpr1in+\hoffset+\oddsidemargin\relax]0,0) {\hspace{1.85cm}\bfseries#2\phantom{i}};
 \end{tikzpicture}}
 
-\titleformat{\chapter}{}{}{0em}{\heading@box{48pt}{\LARGE\thechapter) #1}} % numbered chapters
-\titleformat{name=\chapter,numberless}{}{}{0em}{\LARGE\heading@box{48pt}{#1}} % unnumbered chapters
+\def\chapter@text{\thechapter}
+\def\startappendices{\appendix\def\chapter@text{Appendix \thechapter}} % appendix heading text %FORMAT
+\titleformat{\chapter}{}{}{0em}{\heading@box{48pt}{\LARGE\chapter@text) #1}} % numbered chapters %FORMAT for the 48pt height and the \LARGE
+\titleformat{name=\chapter,numberless}{}{}{0em}{\LARGE\heading@box{48pt}{#1}} % unnumbered chapters %FORMAT for the 48pt height and the \LARGE
 \titlespacing*{\chapter}{0pt}{3em plus 1ex minus .2ex}{2.75em plus .25ex} % spacing around chapter heading %FORMAT
-\titleformat{\section}{}{}{0em}{\heading@box{32pt}{\large\thesection) #1}} % numbered sections
-\titleformat{name=\section,numberless}{}{}{0em}{\heading@box{32pt}{\large#1}} % unnumbered sections
+\titleformat{\section}{}{}{0em}{\heading@box{32pt}{\large\thesection) #1}} % numbered sections %FORMAT for the 32pt height and the \large
+\titleformat{name=\section,numberless}{}{}{0em}{\heading@box{32pt}{\large#1}} % unnumbered sections %FORMAT for the 32pt height and the \large
 \titlespacing*{\section}{0pt}{1em plus 2pt minus 2pt}{.9em plus 1pt}
 
 \else

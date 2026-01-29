@@ -13,6 +13,7 @@ There are three settings:
 The class and commands are set up so that any one of these can be passed or not passed without having to change your document's body at all.
 
 Several commands are provided:
+- `\startappendices`: set the chapter headings to say "Appendix A) ..." etc. rather than "1) ..." etc.;
 - `frontmatter` environment: sets the page styling to be suitable for frontmatter (abstract, table of contents, etc.);
 - `backmatter` environment: sets the page styling to be suitable for backmatter (list of notation, bibliography, etc.);
 - `\abstract{}`: to be used in preamble to define your abstract (if you want one);
