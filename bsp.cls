@@ -31,10 +31,16 @@
 \RequirePackage{etoolbox}
 \patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
 
-%% customize headings
-\ifcolor@headings
 
+
+%%%%% HEADINGS
+
+\def\chapter@text{\thechapter}
+\def\startappendices{\appendix\def\chapter@text{Appendix \thechapter}} % appendix heading text %FORMAT
+
+\ifcolor@headings
 %% headings styled with a colored rectangle
+
 \RequirePackage{tikz}
 \RequirePackage[explicit]{titlesec}
 
@@ -43,8 +49,6 @@
     \node[draw=headingcolor, fill=headingcolor, anchor=west, minimum height=#1, text=white] at ([xshift=-\dimexpr1in+\hoffset+\oddsidemargin\relax]0,0) {\hspace{1.85cm}\bfseries#2\phantom{i}};
 \end{tikzpicture}}
 
-\def\chapter@text{\thechapter}
-\def\startappendices{\appendix\def\chapter@text{Appendix \thechapter}} % appendix heading text %FORMAT
 \titleformat{\chapter}{}{}{0em}{\heading@box{48pt}{\LARGE\chapter@text) #1}} % numbered chapters %FORMAT for the 48pt height and the \LARGE
 \titleformat{name=\chapter,numberless}{}{}{0em}{\LARGE\heading@box{48pt}{#1}} % unnumbered chapters %FORMAT for the 48pt height and the \LARGE
 \titlespacing*{\chapter}{0pt}{3em plus 1ex minus .2ex}{2.75em plus .25ex} % spacing around chapter heading %FORMAT
@@ -53,11 +57,11 @@
 \titlespacing*{\section}{0pt}{1em plus 2pt minus 2pt}{.9em plus 1pt}
 
 \else
-
 %% headings with modified spacing
+
 \RequirePackage{titlesec}
 \titleformat{\chapter}
-  {\normalfont\LARGE\bfseries}{\thechapter}{1em}{}
+  {\normalfont\LARGE\bfseries}{\chapter@text}{1em}{}
 \titlespacing*{\chapter}{0pt}{4.5ex plus 1ex minus .2ex}{1ex plus .2ex} %FORMAT
 
 \fi
