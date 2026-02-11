@@ -11,10 +11,10 @@
 
 \newif\iftitlepage@abstract % if the user wants an abstract on the title page
 \newif\ifcolor@theorems % if the user wants colored boxes for theorems etc
-\newif\ifcolor@headings % if the user wants colored headings
+\newif\ifsubsection@numbering % if the user wants to reset theorem numbers by subsection
 \DeclareOption{titlepage-abstract}{\titlepage@abstracttrue}
 \DeclareOption{color-theorems}{\color@theoremstrue}
-\DeclareOption{color-headings}{\color@headingstrue}
+\DeclareOption{subsection-numbering}{\subsection@numberingtrue}
 \ProcessOptions\relax
 
 
@@ -38,33 +38,9 @@
 \def\chapter@text{\thechapter}
 \def\startappendices{\appendix\def\chapter@text{Appendix \thechapter}} % appendix heading text %FORMAT
 
-\ifcolor@headings
-%% headings styled with a colored rectangle
-
-\RequirePackage{tikz}
-\RequirePackage[explicit]{titlesec}
-
-\definecolor{headingcolor}{RGB}{105,134,170} % rgba(0, 50, 110, 150) %FORMAT
-\def\heading@box#1#2{\begin{tikzpicture}[remember picture, overlay]
-    \node[draw=headingcolor, fill=headingcolor, anchor=west, minimum height=#1, text=white] at ([xshift=-\dimexpr1in+\hoffset+\oddsidemargin\relax]0,0) {\hspace{1.85cm}\bfseries#2\phantom{i}};
-\end{tikzpicture}}
-
-\titleformat{\chapter}{}{}{0em}{\heading@box{48pt}{\LARGE\chapter@text) #1}} % numbered chapters %FORMAT for the 48pt height and the \LARGE
-\titleformat{name=\chapter,numberless}{}{}{0em}{\LARGE\heading@box{48pt}{#1}} % unnumbered chapters %FORMAT for the 48pt height and the \LARGE
-\titlespacing*{\chapter}{0pt}{3em plus 1ex minus .2ex}{2.75em plus .25ex} % spacing around chapter heading %FORMAT
-\titleformat{\section}{}{}{0em}{\heading@box{32pt}{\large\thesection) #1}} % numbered sections %FORMAT for the 32pt height and the \large
-\titleformat{name=\section,numberless}{}{}{0em}{\heading@box{32pt}{\large#1}} % unnumbered sections %FORMAT for the 32pt height and the \large
-\titlespacing*{\section}{0pt}{1em plus 2pt minus 2pt}{.9em plus 1pt}
-
-\else
-%% headings with modified spacing
-
 \RequirePackage{titlesec}
-\titleformat{\chapter}
-  {\normalfont\LARGE\bfseries}{\chapter@text}{1em}{}
+\titleformat{\chapter}{\normalfont\LARGE\bfseries}{\chapter@text}{1em}{}
 \titlespacing*{\chapter}{0pt}{4.5ex plus 1ex minus .2ex}{1ex plus .2ex} %FORMAT
-
-\fi
 
 
 
@@ -156,7 +132,7 @@
 \RequirePackage{tabularx} % essential for any non-trivial tables
 
 \newenvironment{notationtable}[1]
-{\section*{#1}\ifcolor@headings\else\vspace{-1em}\fi\renewcommand{\arraystretch}{1.5}\tabularx{\textwidth}{l@{\hskip 3em}X}}
+{\section*{#1}\vspace{-1em}\renewcommand{\arraystretch}{1.5}\tabularx{\textwidth}{l@{\hskip 3em}X}}
 {\endtabularx}
 \newenvironment{notationtable*}
 {\renewcommand{\arraystretch}{1.5}\tabularx{\textwidth}{l@{\hskip 3em}X}}
@@ -273,7 +249,11 @@
 % results: theorem (thm), lemma (lem), proposition (prp), corollary (cor)
 \definecolor{resultlinecolor}{RGB}{103, 110, 216} % rgba(40, 50, 200, 180) %FORMAT
 \definecolor{resultbgcolor}{RGB}{230, 231, 249} % rgba(40, 50, 200, 30) %FORMAT
+\ifsubsection@numbering
+\linedbox[number within=subsection]{theorem}{Theorem}{thm}{resultbgcolor}{resultlinecolor}
+\else
 \linedbox[number within=section]{theorem}{Theorem}{thm}{resultbgcolor}{resultlinecolor}
+\fi
 \linedbox{lemma}{Lemma}{lem}{resultbgcolor}{resultlinecolor}
 \linedbox{proposition}{Proposition}{prop}{resultbgcolor}{resultlinecolor}
 \linedbox{corollary}{Corollary}{cor}{resultbgcolor}{resultlinecolor}
@@ -291,7 +271,7 @@
 \linedbox{example}{Example}{exmp}{notebgcolor}{notelinecolor}
 \linedbox{conjecture}{Conjecture}{conj}{notebgcolor}{notelinecolor}
 
-% proofs: proof (prf)
+% proofs: proof
 \definecolor{prooflinecolor}{RGB}{103, 103, 103} % rgba(40, 40, 40, 180) %FORMAT
 \definecolor{proofbgcolor}{RGB}{247, 247, 247} % rgba(40, 40, 40, 10) %FORMAT
 \linedbox{@proof}{Proof}{proof}{proofbgcolor}{prooflinecolor} % this numbers the proofs, so we renew the environment to prevent that; but we still allow a title, so you can do e.g. "Proof (of Theorem 1.2.3)"
@@ -316,7 +296,11 @@
     {}% theorem head spec (plain: {})
 
 \theoremstyle{default}
+\ifsubsection@numbering
+\newtheorem{thm}{Theorem}[subsection]
+\else
 \newtheorem{thm}{Theorem}[section]
+\fi
 \newtheorem{lem}[thm]{Lemma}
 \newtheorem{prop}[thm]{Proposition}
 \newtheorem{cor}[thm]{Corollary}
