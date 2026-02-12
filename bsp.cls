@@ -149,6 +149,8 @@
 
 %%%%% BIBLIOGRAPHY
 
+\newcommand{\pref}[2][Theorem]{\hyperref[#2]{#1~\ref*{#2}}} % simple "manual" alternative to \cref or \autoref, since those require complicated setup that is highly dependent on the specific user's preferences and so infeasible to support here
+
 \RequirePackage[nottoc]{tocbibind}
 
 \usepackage[backend=biber, style=numeric-comp, sorting=none]{biblatex}

@@ -8,7 +8,7 @@ The features are mostly related to styling contents: a title page, footers, envi
 There are three settings:
 - `titlepage-abstract`, which causes the abstract to appear on the title page (see `\abstractpage` below);
 - `color-theorems`, which causes theorems, definitions, proofs, examples, etc. to be placed in colored boxes;
-- `color-headings`, which cases chapter and section headings to be placed in colored bars.
+- `subsection-numbering`, which causes theorem numbering to reset every subsection, instead of every section.
 
 The class and commands are set up so that any one of these can be passed or not passed without having to change your document's body at all.
 
@@ -21,6 +21,7 @@ Several commands are provided:
 - `\candidatenumber{}`: to be used in preamble to define your candidate number (accordingly, `\author` has been *un*defined, since we are not supposed to give our name);
 - `\notationlist{}`: to be used in frontmatter or backmatter (optionally) to put a page containing notation (see `notationtable` environment);
 - `notationtable{}` environment: to be used in the argument for `\notationlist` to place a table for defining notation, with an argument for a heading (or use `notationtable*` to have no heading, if you just want one big table);
+- `\pref[]{}` (optional argument default: `Theorem`): like \ref except it includes the category of thing being cited in the hyperlink, e.g. if Lemma 2.4.1 is labelled with `\label{lem:handshake}`, then `\pref[Lemma]{lem:handshake}` has "Lemma 2.4.1" *all* hyperlinked, rather than just the "2.4.1" being hyperlinked (if you want a more automated approach to this, look into `cleveref`'s `\cref` or `hyperref`'s `\autoref`; they aren't supplied here because their proper usage requires extensive setup which is highly dependent on the specific user's preferences, and so they are rather infeasible to support in the general context of a template);
 - several `amsthm` environments: `thm` (theorem), `prop` (proposition), `lem` (lemma), `cor` (corollary), `defn` (definition), `alg` (algorithm), `rmk` (remark), `exmp` (example), `conj` (conjecture), and `proof`. (The `color-theorems` package option technically uses the `tcolorbox` package, instead of `amsthm`, but the class gives it a wrapper so that it is used in an identical manner to the `amsthm` environments.)
 
 Additionally, a few very useful (i.e. basically essential) commands are defined in `preamble.sty`.
