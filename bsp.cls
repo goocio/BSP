@@ -24,6 +24,9 @@
 % https://tex.stackexchange.com/questions/414350/hyperlinking-the-full-citation-not-only-the-number
 \RequirePackage[pdfpagelabels, hidelinks]{hyperref} % MUST BE LOADED BEFORE GEOMETRY
 \RequirePackage[a4paper, left = 2cm, right = 2cm, top = 2cm, bottom = 2cm]{geometry} % page shape %FORMAT (except margins must be at *least* 2cm on each side)
+\RequirePackage{enumitem}
+\setlist[enumerate]{itemsep=0pt, topsep=0pt} % space in/around `enumerate` environments %FORMAT
+\setlist[itemize]{itemsep=0pt, topsep=0pt} % space in/around `itemize` environments %FORMAT
 % \renewcommand{\baselinestretch}{1.25} % space between lines *= 1.25 %FORMAT
 \parindent0pt % no paragraph indent %FORMAT
 
@@ -239,7 +242,7 @@
     sharp corners,
     parbox = false,
     detach title,
-    before upper = \tcbtitle\\,
+    before upper = \tcbtitle\par\vspace{-\parskip},
     coltitle = black,
     fonttitle = \bfseries\sffamily,
     description font = \mdseries\sffamily,
