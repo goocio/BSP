@@ -284,6 +284,10 @@
 \renewenvironment{proof}[1][]{\csname @proof*\endcsname{#1}{}}{\qed\csname end@proof*\endcsname}
 \def\flushproof{\vspace{-\parskip}} % put this before a proof to make it flush with the result it's proving
 
+% make figure numbering agree with environment numbering
+\let\c@figure\c@tcb@cnt@theorem
+\let\thefigure\thetcb@cnt@theorem
+
 
 \else
 %% regular theorem environments with amsthm
@@ -315,5 +319,9 @@
 \newtheorem{exmp}[thm]{Example}
 \newtheorem{conj}[thm]{Conjecture}
 \def\flushproof{} % defined to ensure interchangeability with the color version
+
+% make figure numbering agree with environment numbering
+\let\c@figure\c@thm
+\let\thefigure\thethm
 
 \fi
