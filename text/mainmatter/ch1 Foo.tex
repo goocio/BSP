@@ -14,10 +14,12 @@
         \item \((f_n(x))\) converges a.e.~to a limit \(f(x)\),
         \item there is an integrable function \(g\) such that, for each \(n\), \(\abs{f_n (x)} \leqslant g(x)~\mathrm{a.e.}\).
     \end{enumerate}
-    Then \(f\) is integrable, and \(\int f = \lim_{n\to\infty} \int f_n\).
+    Then \(f\) is integrable, and \begin{equation}\label{eq:dct result}
+        \int f = \lim_{n\to\infty} \int f_n.
+    \end{equation}
 \end{thm}
 \flushproof\begin{proof}
-    The proof is trivial! Just biject it to a skew-symmetric residue class whose elements are twice-differentiable algebras.
+    The proof is trivial! Just biject \eqref{eq:dct result} to a skew-symmetric residue class whose elements are twice-differentiable algebras.
 \end{proof}
 
 \lipsum[13]

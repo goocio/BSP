@@ -44,6 +44,8 @@
 \RequirePackage{titlesec}
 \titleformat{\chapter}{\normalfont\LARGE\bfseries}{\chapter@text}{1em}{}
 \titlespacing*{\chapter}{0pt}{4.5ex plus 1ex minus .2ex}{1ex plus .2ex} %FORMAT
+\titlespacing*{\section}{0pt}{1.5ex plus 0.2ex minus 0.05ex}{0.75ex plus 0.1ex} %FORMAT
+\titlespacing*{\subsection}{0pt}{1ex plus 0.1ex minus 0.025ex}{0.5ex plus 0.05ex} %FORMAT
 
 
 
@@ -152,7 +154,17 @@
 
 %%%%% BIBLIOGRAPHY
 
+\RequirePackage{amsmath} % defines \eqref, so must be loaded to overrwrite \eqref
+
 \newcommand{\pref}[2][Theorem]{\hyperref[#2]{#1~\ref*{#2}}} % simple "manual" alternative to \cref or \autoref, since those require complicated setup that is highly dependent on the specific user's preferences and so infeasible to support here
+\renewcommand{\eqref}[2][\@nil]{% \pref esque treatment of AMS's \eqref
+\def\tmp{#1}%
+\ifx\tmp\@nnil% if no optional argument passed (if \tmp expands to same thing as \@nnil, i.e. \@nil)
+\hyperref[#2]{(\ref*{#2})}%
+\else% if optional argument passed
+\hyperref[#2]{#1~(\ref*{#2})}%
+\fi%
+}
 
 \RequirePackage[nottoc]{tocbibind}
 
