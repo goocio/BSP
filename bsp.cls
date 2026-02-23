@@ -181,6 +181,8 @@
     \finentry%
 }
 \DeclareFieldFormat[article]{title}{``#1"}
+\DeclareFieldFormat[article]{number}{.#1}
+\DeclareFieldFormat[article]{year}{ (#1)}
 \DeclareBibliographyDriver{article}{%
     \printnames{author}%
     \newunit\newblock%
@@ -189,11 +191,8 @@
     \printfield[emph]{journaltitle}%
     \newunit%
     \printfield{volume}%
-    \printtext{.}%
     \printfield{number}%
-    \printtext{ (}%
     \printfield{year}%
-    \printtext{)}%
     \newunit\newblock%
     \printfield{pages}%
     \finentry%
