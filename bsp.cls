@@ -154,18 +154,6 @@
 
 %%%%% BIBLIOGRAPHY
 
-\RequirePackage{amsmath} % defines \eqref, so must be loaded to overrwrite \eqref
-
-\newcommand{\pref}[2][Theorem]{\hyperref[#2]{#1~\ref*{#2}}} % simple "manual" alternative to \cref or \autoref, since those require complicated setup that is highly dependent on the specific user's preferences and so infeasible to support here
-\renewcommand{\eqref}[2][\@nil]{% \pref esque treatment of AMS's \eqref
-\def\tmp{#1}%
-\ifx\tmp\@nnil% if no optional argument passed (if \tmp expands to same thing as \@nnil, i.e. \@nil)
-\hyperref[#2]{(\ref*{#2})}%
-\else% if optional argument passed
-\hyperref[#2]{#1~(\ref*{#2})}%
-\fi%
-}
-
 \RequirePackage[nottoc]{tocbibind}
 
 \usepackage[backend=biber, style=numeric-comp, sorting=none]{biblatex}
@@ -229,6 +217,18 @@
 \let\olddisplaymathopen\[
 \let\olddisplaymathclose\]
 \def\[#1\]{\olddisplaymathopen\copyablemath{\[}{#1}{\]}\olddisplaymathclose}
+
+% cross-referencing commands where the whole thing is hyperlinked; this requires loading amsmath, but for some reason, doing so before doing the `accsup` stuff breaks the `cases` environment, so it's done here just after instead
+\RequirePackage{amsmath} % defines \eqref, so must be loaded to overrwrite \eqref
+\newcommand{\pref}[2][Theorem]{\hyperref[#2]{#1~\ref*{#2}}} % simple "manual" alternative to \cref or \autoref, since those require complicated setup that is highly dependent on the specific user's preferences and so infeasible to support here
+\renewcommand{\eqref}[2][\@nil]{% \pref esque treatment of AMS's \eqref
+\def\tmp{#1}%
+\ifx\tmp\@nnil% if no optional argument passed (if \tmp expands to same thing as \@nnil, i.e. \@nil)
+\hyperref[#2]{(\ref*{#2})}%
+\else% if optional argument passed
+\hyperref[#2]{#1~(\ref*{#2})}%
+\fi%
+}
 
 
 
