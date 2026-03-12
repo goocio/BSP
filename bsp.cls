@@ -185,6 +185,22 @@
     \printfield{pages}%
     \finentry%
 }
+\DeclareFieldFormat[online]{title}{``#1"}
+\DeclareFieldFormat[online]{url}{\url{#1}}
+\DeclareFieldFormat[online]{date}{ (#1)}
+\DeclareFieldFormat[online]{date}{ (\thefield{year}-\mkmonthzeros{\thefield{month}}-\mkdayzeros{\thefield{day}})}
+\DeclareFieldFormat[online]{urldate}{last accessed \thefield{urlyear}-\mkmonthzeros{\thefield{urlmonth}}-\mkdayzeros{\thefield{urlday}}}
+\DeclareBibliographyDriver{online}{%
+    \printnames{author}%
+    \newunit\newblock%
+    \printfield{title}%
+    \newunit\newblock
+    \printfield{url}%
+    \usebibmacro{date}%
+    \newunit\newblock%
+    \usebibmacro{urldate}%
+    \finentry
+}
 
 
 
